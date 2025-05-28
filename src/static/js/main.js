@@ -1,3 +1,38 @@
+document.addEventListener('DOMContentLoaded', function() {
+    currentTime();
+    setInterval(currentTime, 1000);
+    getWeather();
+
+    // Bike scroll movement
+    window.addEventListener('scroll', function() {
+        const bike = document.querySelector('.bike');
+        // Calculate how far to move the bike (adjust multiplier for speed)
+        const scrollLeft = 10 + (window.scrollY / 10); // 15vw base + scroll
+        bike.style.left = `calc(${scrollLeft}vw)`;
+    });
+
+    const turboTitle = document.querySelector('.turbo-title-center');
+    const turboSound = document.getElementById('turbo-sound');
+    if (turboTitle && turboSound) {
+        turboTitle.addEventListener('click', function() {
+            turboSound.currentTime = 0;
+            turboSound.play();
+
+            // Send request to activate servo
+            fetch('/activate-servo', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        console.error('Servo activation failed:', data.error);
+                    }
+                })
+                .catch(err => {
+                    console.error('Error activating servo:', err);
+                });
+        });
+    }
+});
+
 function currentTime(){
     const now = new Date();
     let hours = now.getHours();
@@ -9,22 +44,19 @@ function currentTime(){
 setInterval(currentTime, 1000)
 currentTime();
 
-// Replace 'YOUR_API_KEY' with your actual OpenWeatherMap API key
 function getWeather() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
-            const apiKey = 'YOUR_API_KEY';
-            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-
-            fetch(url)
+            fetch(`/weather?lat=${lat}&lon=${lon}`)
                 .then(response => response.json())
                 .then(data => {
-                    // Example: display temperature and weather description
-                    const temp = data.main.temp;
-                    const desc = data.weather[0].description;
-                    document.getElementById('weather').textContent = `${temp}°C, ${desc}`;
+                    if (data.temp !== undefined && data.temp !== null) {
+                        document.getElementById('weather').textContent = `${data.temp}°C`;
+                    } else {
+                        document.getElementById('weather').textContent = 'Weather unavailable';
+                    }
                 })
                 .catch(error => {
                     document.getElementById('weather').textContent = 'Weather unavailable';
@@ -34,6 +66,3 @@ function getWeather() {
         document.getElementById('weather').textContent = 'Geolocation not supported';
     }
 }
-
-// Call this function after the page loads
-getWeather();

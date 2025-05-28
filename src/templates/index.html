@@ -11,10 +11,17 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 <body>
+    <div class="turbo-title-center">
+        <span class="turbo-green">T</span>
+        <span class="turbo-red">U</span>
+        <span class="turbo-yellow">R</span>
+        <span class="turbo-blue">B</span>
+        <span class="turbo-green">O</span>
+    </div>
     <!-- Mario-style header -->
     <div class="mario-header">
         <div class="left">
-            TURBO<br>
+            <div class="turbo-title">TURBO</div>
         </div>
         <div class="center">
             <img src="{{ url_for('static', filename='images/cloud.png') }}" alt="Cloud" class="cloud center">
@@ -24,6 +31,9 @@
         <div class="right">
             TIME<br>
             <span id="time"></span>
+            <span id="weather"></span>
+            <!-- Add Login button -->
+            <button class="login-btn" onclick="window.location.href='/login'">Login</button>
         </div>
     </div>
     <!-- Game area -->
@@ -43,11 +53,16 @@
         </div>
         <!-- Pipe -->
         <img src="{{ url_for('static', filename='images/pipe.png') }}" alt="Pipe" class="pipe">
+        <!-- Bike -->
+        <img src="{{ url_for('static', filename='images/bike.png') }}" alt="Bike" class="bike">
     </div>
     <footer class="footer">
         &copy; 2025 Turbo Bike &mdash; Level up your ride!
     </footer>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Spacer div to push content up -->
+    <div style="height: 100vh;"></div>
+    <audio id="turbo-sound" src="{{ url_for('static', filename='sounds/turbo.mp3') }}"></audio>
 </body>
 </html>

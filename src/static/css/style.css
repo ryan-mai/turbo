@@ -27,7 +27,11 @@ body {
     flex: 1;
     text-align: center;
 }
-.mario-header .left { text-align: left; padding-left: 3vw;}
+.mario-header .left {
+    text-align: left;
+    padding-left: 0;
+    margin-left: 5vw;    /* Add margin if you want */
+}
 .mario-header .center { text-align: center;}
 .mario-header .right { text-align: right; padding-right: 3vw;}
 .game-area {
@@ -182,10 +186,103 @@ body {
     vertical-align: middle;
     opacity: 0.8;
 }
+#time, #weather {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
 #time {
     font-size: 1.2vw;
     color: #fff176;
     letter-spacing: 1px;
+}
+#weather {
+    font-size: 1.2vw;
+    color: #fff176;
+    letter-spacing: 1px;
+    margin-left: 10px;
+}
+.bike {
+    position: fixed;
+    bottom: 64px;
+    left: 15vw;
+    width: 18vw;         /* Responsive width */
+    min-width: 200px;    /* Minimum size */
+    max-width: 320px;    /* Maximum size */
+    height: auto;
+    z-index: 12;
+}
+.turbo-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2vw;
+    color: #fff176; /* Mario yellow */
+    text-shadow:
+        3px 3px 0 #000,
+        2px 2px 0 #000,
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        -2px -2px 0 #000,
+        -3px -3px 0 #000;
+    letter-spacing: 0.2em;
+    text-align: center;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    line-height: 1.1;
+}
+.turbo-title-center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8vw;
+    text-shadow:
+        3px 3px 0 #000,
+        2px 2px 0 #000,
+        1px 1px 0 #000,
+        -1px -1px 0 #000,
+        -2px -2px 0 #000,
+        -3px -3px 0 #000;
+    letter-spacing: 0.2em;
+    text-align: center;
+    line-height: 1.1;
+    z-index: 1000;
+    transition: font-size 0.2s cubic-bezier(.4,2,.6,1), transform 0.2s cubic-bezier(.4,2,.6,1);
+    cursor: pointer;
+}
+.turbo-title-center:hover {
+    font-size: 10vw;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+.turbo-title-center span {
+    display: inline-block;
+}
+.turbo-title-center span.turbo-green  { color: #43af35; }
+.turbo-title-center span.turbo-red    { color: #e42311; }
+.turbo-title-center span.turbo-yellow { color: #fccf00; }
+.turbo-title-center span.turbo-blue   { color: #009cd9; }
+.login-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1vw;
+    background: #009cd9;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 0.5em 1.5em;
+    margin-top: 1em;
+    margin-left: 1em;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.login-btn:hover {
+    background: #fccf00;
+    color: #000;
+    transform: scale(1.05);
 }
 @media (max-width: 900px) {
     .mario-header { font-size: 2.5vw; }
