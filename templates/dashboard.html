@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Turbo Bike</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body class="dashboard-bg">
+    <div class="dashboard-container">
+        <aside class="dashboard-sidebar">
+            <div class="sidebar-title">TURBO</div>
+            <nav>
+                <ul>
+                    <li class="active">Dashboard</li>
+                    <li>History</li>
+                    <li>Settings</li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="dashboard-main">
+            <h2>Welcome, {{ current_user.username }}!</h2>
+            <div class="dashboard-cards">
+                <div class="dashboard-card mario-yellow">
+                    <div class="card-title">Distance</div>
+                    <div class="card-value">{{ rides|length > 0 and rides[0].distance_km or 0 }} km</div>
+                </div>
+                <div class="dashboard-card mario-red">
+                    <div class="card-title">Duration</div>
+                    <div class="card-value">{{ rides|length > 0 and rides[0].duration_min or 0 }} min</div>
+                </div>
+                <div class="dashboard-card mario-blue">
+                    <div class="card-title">Total Rides</div>
+                    <div class="card-value">{{ rides|length }}</div>
+                </div>
+            </div>
+            <div class="dashboard-history">
+                <h3>Ride History</h3>
+                {% if rides %}
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Distance (km)</th>
+                        <th>Duration (min)</th>
+                    </tr>
+                    {% for ride in rides %}
+                    <tr>
+                      <td>
+                        {{ ride.date.strftime('%A - %B %d, %Y (%H:%M)').replace(' 0', ' ') }}
+                      </td>
+                      <td>
+                        {{ ride.distance_km|int }} km
+                      </td>
+                      <td>{{ ride.duration_min }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% else %}
+                <p>No rides tracked yet.</p>
+                {% endif %}
+                <form class="import-form" action="{{ url_for('import_rides') }}" method="post" enctype="multipart/form-data">
+                    <label for="ridefile" class="import-label import-btn">
+                        <span class="import-icon">📁</span>
+                        <span><strong>Import File(s)</strong></span>
+                        <input type="file" id="ridefile" name="ridefile" accept=".csv,.txt,.tsv,.json" required style="display:none;" onchange="this.form.submit()">
+                    </label>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                      {% for category, message in messages %}
+                        {% if category == 'duplicate' %}
+                          <span class="import-duplicate-msg">{{ message }}</span>
+                        {% endif %}
+                      {% endfor %}
+                    {% endwith %}
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

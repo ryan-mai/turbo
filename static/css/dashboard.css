@@ -1,0 +1,254 @@
+/* Mario dashboard dark theme */
+.dashboard-bg {
+    background: #23243a;
+    color: #fff;
+    font-family: 'Press Start 2P', monospace;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.dashboard-sidebar {
+    width: 220px;
+    background: #18192b;
+    padding: 2em 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 4px solid #fccf00;
+}
+
+.sidebar-title {
+    font-size: 2em;
+    color: #fccf00;
+    text-shadow: 2px 2px 0 #000;
+    margin-bottom: 2em;
+    letter-spacing: 0.1em;
+}
+
+.dashboard-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.dashboard-sidebar nav ul li {
+    margin: 1.5em 0;
+    font-size: 1em;
+    color: #fff;
+    text-align: left;
+    padding-left: 0.5em;
+    border-left: 4px solid transparent;
+    transition: border 0.2s, color 0.2s;
+}
+
+.dashboard-sidebar nav ul li.active,
+.dashboard-sidebar nav ul li:hover {
+    color: #fccf00;
+    border-left: 4px solid #fccf00;
+}
+
+.dashboard-main {
+    flex: 1;
+    padding: 2em 3em;
+}
+
+.dashboard-cards {
+    display: flex;
+    gap: 2em;
+    margin-bottom: 2em;
+}
+
+.dashboard-card {
+    flex: 1;
+    background: #18192b;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(255,183,77,0.18);
+    padding: 2em 1em;
+    text-align: center;
+    border: 3px solid #fff176;
+    min-width: 150px;
+}
+
+.mario-yellow { border-color: #fff176; }
+.mario-red    { border-color: #e42311; }
+.mario-blue   { border-color: #009cd9; }
+.mario-green  { border-color: #43af35; }
+
+.card-title {
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    color: #fff;
+    letter-spacing: 0.05em;
+}
+
+.card-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff176;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.dashboard-history {
+    margin-top: 2em;
+    background: #18192b;
+    border-radius: 12px;
+    padding: 2em;
+    box-shadow: 0 2px 12px rgba(255,183,77,0.10);
+}
+
+.dashboard-history table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+.dashboard-history th, .dashboard-history td {
+    border-bottom: 1px solid #444;
+    padding: 0.7em 0.5em;
+    text-align: left;
+    font-size: 1em;
+}
+
+.dashboard-history th {
+    color: #fccf00;
+    font-size: 1.1em;
+}
+
+.dashboard-history tr:nth-child(even) {
+    background: #23243a;
+}
+
+.dashboard-history tr:hover {
+    background: #2e2f4a;
+}
+
+.dashboard-history input[type="file"] {
+    font-size: 1em;
+    margin-right: 1em;
+}
+
+.dashboard-history button {
+    font-family: 'Press Start 2P', monospace;
+    background: #009cd9;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.dashboard-history button:hover {
+    background: #fccf00;
+    color: #000;
+    transform: scale(1.05);
+}
+
+.import-form {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    background: #23243a;
+    padding: 1.2em 1.5em;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(255, 207, 0, 0.08);
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+.import-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 1.1em;
+    color: #fff176;
+    cursor: pointer;
+}
+
+.import-icon {
+    font-size: 1.5em;
+}
+
+.import-form input[type="file"] {
+    font-size: 1em;
+    color: #fff;
+    background: #18192b;
+    border: 1px solid #fff176;
+    border-radius: 6px;
+    padding: 0.4em 0.7em;
+    margin-right: 1em;
+    cursor: pointer;
+    width: 220px;
+}
+
+.import-form input[type="file"]::-webkit-file-upload-button {
+    font-family: 'Press Start 2P', monospace;
+    background: #009cd9;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 6px;
+    padding: 0.3em 1em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.import-form input[type="file"]:hover::-webkit-file-upload-button {
+    background: #fccf00;
+    color: #000;
+}
+
+.import-btn {
+    font-family: 'Press Start 2P', monospace;
+    background: #43af35;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 #000;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+
+.import-btn:hover {
+    background: #fccf00;
+    color: #000;
+    transform: scale(1.05);
+}
+
+.import-label.import-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 1.1em;
+    color: #fff;
+    background: #009cd9;
+    border: 2px solid #000;
+    border-radius: 8px;
+    padding: 0.5em 1.5em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+    font-family: 'Press Start 2P', monospace;
+    position: relative;
+}
+
+.import-label.import-btn:hover {
+    transform: scale(1.05);
+}
+
+.import-label input[type="file"] {
+    display: none;
+}
+
+.import-duplicate-msg {
+    margin-left: 1em;
+    color: #e42311;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1em;
+    font-weight: bold;
+}
